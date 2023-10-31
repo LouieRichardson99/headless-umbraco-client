@@ -1,0 +1,46 @@
+---
+import Card from '@/components/Card.astro'
+import Layout from '@/layouts/Layout.astro'
+import client from '@/utils/umbraco-client'
+
+// Fetch our blog posts from Umbraco.
+const posts = await client.getContentByType('blogPost', {
+	sort: { type: 'createDate', order: 'asc' }
+})
+---
+
+<Layout title="Blog Page">
+	<main>
+		<h1>Blog Page</h1>
+		<p>List of all our blog posts stored in Umbraco</p>
+		<div class="card-grid">
+			{
+				posts.map((post) => {
+					const {
+						image: [img],
+						title,
+						description
+					} = post.properties
+
+					return (
+						<Card
+							link={`/blog/${post.route.path}`}
+							imageUrl={img.url}
+							title={title}
+							description={description}
+						/>
+					)
+				})
+			}
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		grid-gap: 2rem;
+		margin-top: 3rem;
+	}
+</style>

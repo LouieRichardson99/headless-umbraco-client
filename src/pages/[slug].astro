@@ -1,0 +1,26 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import client from '@/utils/umbraco-client'
+
+export async function getStaticPaths() {
+	// Fetch all content of type "page" from Umbraco sorted by creation date in ascending order.
+	const pages = await client.getContentByType('page', {
+		expand: 'all'
+	})
+
+	// Create a page for each one using the slug as the route, and pass in the props.
+	return pages.map((page) => ({
+		params: { slug: page.route.path.replaceAll('/', '') },
+		props: page.properties
+	}))
+}
+
+const { title, description } = Astro.props
+---
+
+<Layout {title}>
+	<main>
+		<h1>{title}</h1>
+		<p>{description}</p>
+	</main>
+</Layout>

@@ -1,0 +1,22 @@
+{
+  "name": "headless-umbraco-client",
+  "version": "0.0.1",
+  "dependencies": {
+    "@astrojs/lit": "^3.0.2",
+    "@webcomponents/template-shadowroot": "^0.2.1",
+    "astro": "^3.0.5",
+    "lit": "^2.7.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.1"
+  },
+  "scripts": {
+    "dev": "bunx --bun astro dev",
+    "build": "bunx --bun astro build",
+    "preview": "bunx --bun astro preview",
+    "astro": "bunx --bun astro"
+  },
+  "type": "module",
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
+}

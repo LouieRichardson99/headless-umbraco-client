@@ -1,0 +1,45 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import client from '@/utils/umbraco-client'
+import { MyCounter } from '@/components/my-counter'
+
+// Fetch our homepage content from Umbraco.
+const homepage = await client.getContentById('homepage')
+const {
+	title,
+	description,
+	image: [img]
+} = homepage.properties
+const baseUrl = import.meta.env.PUBLIC_BASE_URL
+---
+
+<Layout {title}>
+	<main>
+		<h1>{title}</h1>
+		<p>{description}</p>
+		<div class="image-container">
+			<img src=`${baseUrl}${img.url}` alt=`${img.altText}` class="image" />
+		</div>
+
+		<div class="web-component-container">
+			<p>This is a Lit web component inside an Astro page! 🤯</p>
+			<MyCounter client:visible />
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.image-container {
+		margin: 2rem 0 2rem 0;
+		height: 100vh;
+	}
+
+	.image {
+		width: 100%;
+		height: max-content;
+	}
+
+	.web-component-container {
+		margin-bottom: 5rem;
+	}
+</style>

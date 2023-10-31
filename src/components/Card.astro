@@ -1,0 +1,56 @@
+---
+interface Props {
+	title: string
+	description: string
+	imageUrl: string
+	link: string
+}
+
+const { title, link, description, imageUrl } = Astro.props
+const baseUrl = import.meta.env.PUBLIC_BASE_URL
+---
+
+<a href={link} class="card">
+	<img src=`${baseUrl}${imageUrl}` alt={title} />
+	<div class="content">
+		<h2>{title}</h2>
+		<p>{description}</p>
+	</div>
+</a>
+
+<style lang="scss">
+	.card {
+		background-color: #400a5f13;
+		border-radius: 10px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		position: relative;
+		overflow: hidden;
+		color: unset;
+		text-decoration: none;
+		transition: box-shadow 0.2s ease-in-out;
+
+		&:hover {
+			box-shadow: 0 0 25px #e62a6350;
+		}
+	}
+
+	img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+	}
+
+	.content {
+		padding: 20px;
+	}
+
+	h2 {
+		font-size: 24px;
+		margin: 0;
+	}
+
+	p {
+		font-size: 16px;
+		color: #e3e3e3;
+	}
+</style>
