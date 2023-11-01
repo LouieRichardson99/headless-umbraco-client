@@ -42,7 +42,7 @@ function createClient({ domain }: { domain: string }) {
 		getContentByType: async (itemType: string, options?: Options) => {
 			const { sort, expand } = options || {}
 
-			// Example: http://localhost:20125/umbraco/delivery/api/v1/content?filter=contentType:blogPost&sort=createDate:desc&expand=property:content
+			// Example: https://localhost:44326/umbraco/delivery/api/v1/content?filter=contentType:blogPost&sort=createDate:desc&expand=property:content
 			const response = await fetch(
 				`${apiUrl}?filter=contentType:${itemType}${getSortParam(sort)}${getExpandParam(expand)}`
 			)
