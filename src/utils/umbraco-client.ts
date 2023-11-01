@@ -34,7 +34,11 @@ function createClient({ domain }: { domain: string }) {
 
 	return {
 		getContentById: async (id: string) => {
-			const response = await fetch(`${apiUrl}/item/${id}`)
+			const response = await fetch(`${apiUrl}/item/${id}`, {
+				headers: new Headers({
+					'ngrok-skip-browser-warning': '1' // Remove ngrok warning to allow deployment build to pass
+				})
+			})
 			const data = await response.json()
 
 			return data
@@ -44,7 +48,12 @@ function createClient({ domain }: { domain: string }) {
 
 			// Example: https://localhost:44326/umbraco/delivery/api/v1/content?filter=contentType:blogPost&sort=createDate:desc&expand=property:content
 			const response = await fetch(
-				`${apiUrl}?filter=contentType:${itemType}${getSortParam(sort)}${getExpandParam(expand)}`
+				`${apiUrl}?filter=contentType:${itemType}${getSortParam(sort)}${getExpandParam(expand)}`,
+				{
+					headers: new Headers({
+						'ngrok-skip-browser-warning': '1' // Remove ngrok warning to allow deployment build to pass
+					})
+				}
 			)
 			const data = await response.json()
 
