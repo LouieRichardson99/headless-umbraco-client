@@ -10,10 +10,11 @@
     "prettier-plugin-astro": "^0.12.1"
   },
   "scripts": {
-    "dev": "bunx --bun astro dev",
-    "build": "bunx --bun astro build",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
     "preview": "wrangler pages dev ./dist",
-    "astro": "bunx --bun astro"
+    "astro": "astro"
   },
   "type": "module",
   "devDependencies": {
