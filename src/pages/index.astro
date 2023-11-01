@@ -20,9 +20,8 @@ const baseUrl = import.meta.env.PUBLIC_BASE_URL
 		<div class="image-container">
 			<img src=`${baseUrl}${img.url}` alt=`${img.altText}` class="image" />
 		</div>
-
 		<div class="web-component-container">
-			<p>This is a Lit web component inside an Astro page! 🤯</p>
+			<p>This is a Lit web component inside an Astro page as an interactive island 🤯</p>
 			<MyCounter client:visible />
 		</div>
 	</main>
